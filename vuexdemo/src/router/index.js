@@ -6,7 +6,8 @@ import Info from '@/components/info';
 Vue.use(Router);
 
 export default new Router({
-    routes: [{
+    routes: [
+        {
             path: '/',
             name: 'Product',
             component: Product

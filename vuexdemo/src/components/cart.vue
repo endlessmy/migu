@@ -28,22 +28,25 @@
                 </tbody>
             </table>
         </div>
+        <hr>
     </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
-    name: 'Cart',
-    data() {
-        return {
-            cartProducts: []
-        }
-    },
-    methods: {
-        delProduct(val) {
-
-        }
-    }
-}
+  name: "Cart",
+  data() {
+    return {
+      cartProducts: []
+    };
+  },
+  computed: {
+    ...mapGetters(["cartProducts"]) //页面v-for中的数据
+  },
+  methods: {
+    ...mapActions(["delProduct"])
+  }
+};
 </script>
 <style></style>
