@@ -9,9 +9,9 @@
                      <p>{{item.hint}}</p>
                      <P>￥{{item.price}}</P>
                      <div class="opertation">
-                         <button>-</button>
-                         {{count}}
-                         <button>+</button>
+                         <button @click="reduce_cart(item.id)">-</button>
+                         {{item.num}}
+                         <button @click="add_cart(item.id)">+</button>
                      </div>
                   </div>
               </li>
@@ -22,24 +22,32 @@
              <p>合计：￥{{totalPrice}}</p>
          </div>
          <div class="price">
-             <P>去结账：{{totalNumber}}</P>
+             <P>去结账：{{totalNum}}</P>
          </div>
       </div>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
 export default {
     name: 'Cart',
     data() {
-        return {
-
-        }
+        return {};
     },
     computed: {
-        ...mapState(['count'])
+        ...mapState(['goods', 'totalPrice', 'totalNum']),
+        ...mapGetters(['goods_obj', 'goods_length'])
+    },
+    methods: {
+        reduce_cart(id) {
+            this.REDUCE_CART(id);
+        },
+        add_cart(id) {
+            this.ADD_CART(id);
+        },
+        ...mapMutations(['ADD_CART', 'REDUCE_CART'])
     }
-}
+};
 </script>
 <style lang="less">
 .cart {
